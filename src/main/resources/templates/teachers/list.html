@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr"
+xmlns="http://www.w3.org/1999/xhtml"
+xmlns:th="http://www.thymeleaf.org">
+
+<link rel="stylesheet" href="../css/professeur/lister.css">
+
+<head th:insert="~{fragments/fragment :: head}">
+
+</head>
+<body>
+<div class="sidebar" th:insert="~{fragments/fragment :: sidebar}"></div>
+<div class="main-content">
+    <main>
+        <header class="header">
+            <h1> Professeurs (<span th:text="${teachers.size()}"></span>)</h1>
+            <a th:href="@{/teachers/add}"> <img src="../icon/plus.png" style="width: 10px;height: 10px" alt=""> Nouveau profeseur</a>
+        </header>
+        <section class="table-section">
+            <table>
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Vaccant</th>
+                    <th>Ville</th>
+                    <th>Téléphone</th>
+                    <th>E-mail</th>
+                    <th>Matière</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="teacher:${teachers}">
+                    <td th:text="${teacher.nom}"></td>
+                    <td th:text="${teacher.prenom}"></td>
+                    <td th:text="${teacher.vacant}"></td>
+                    <td th:text="${teacher.ville}"></td>
+                    <td th:text="${teacher.telephone}"></td>
+                    <td th:text="${teacher.email}"></td>
+                    <td th:text="${teacher.matiereEnseigne}"></td>
+
+                    <td>
+                        <span>
+                        <a th:href="@{teachers/{id}(id=${teacher.id})}"> <button class="edit-btn" >Modifier</button></a> <br><br>
+                        <a th:href="@{/teachers/delete/{id}(id=${teacher.id})}" class="btn btn-danger btn-sm" onclick="confirmDelete(event, this)"><button class="delete-btn" >Supprimer</button></a>                            </span>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</div>
+<script>
+    function confirmDelete(event, button) {
+        event.preventDefault();
+        var row = button.closest('tr');
+        if (confirm('Voulez-vous supprimer ce professeur ?')) {
+            window.location.href = button.href;
+        } else {
+            console.log('Suppression annulée');
+        }
+    }
+</script>
+
+<!-- Assurez-vous d'inclure Bootstrap JavaScript -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+
+
+<script src="../js/Modal.js"></script>
+</body>
+</html>

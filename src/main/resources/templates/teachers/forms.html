@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="../css/professeur/ajouter.css">
+
+<head th:insert="~{fragments/fragment :: head}">
+
+</head>
+<body>
+<div class="sidebar" th:insert="~{fragments/fragment::sidebar}"></div>
+<div class="main-content">
+    <main>
+        <div class="retour-container">
+            <a href="#" class="retour">← Retour</a>
+        </div>
+        <h2>Ajouter un Professeur</h2>
+        <form id="addTeacherForm"  th:object="${teacher}" th:action="@{/teachers}" method="post">
+            <div class="form-row">
+                <input th:field="*{id}"  hidden="hidden">
+                <input th:field="*{nom}" type="text" id="nom" placeholder="Nom" required>
+                <input th:field="*{prenom}" type="text" id="prenom" placeholder="Prénom" required>
+            </div>
+            <div class="form-row">
+                <div>
+                    <label >Vacant :</label>
+                </div>
+                <div class="radio-group">
+                    <label><input th:field="*{vacant}" type="radio" name="vacant" value="true"  required> oui</label>
+                    <label><input th:field="*{vacant}" type="radio" name="vacant" value="false" required> non</label>
+                </div>
+            </div>
+            <div class="form-row">
+                <select th:field="*{matiereEnseigne}" id="classe" required>
+                    <option value="">Sélectionner une matiere</option>
+                    <option value="Math">Math</option>
+                    <option value="Physique">Physique</option>
+                    <option value="EPS">EPS</option>
+                    <option value="Anglais">Anglais</option>
+                    <option value="SVT">SVT</option>
+                    <option value="Philosophie">Philosophie</option>
+                    <option value="Français">Français</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <input th:field="*{telephone}" type="tel" id="telephone" placeholder="Téléphone">
+                <input th:field="*{ville}" type="text" id="ville" placeholder="Ville">
+                <input th:field="*{email}" type="email" id="email" placeholder="Email" required>
+
+            </div>
+            <div class="form-row buttons">
+                <button type="button" class="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-save">Enregistrer</button>
+            </div>
+        </form>
+    </main>
+</div>
+
+<script src="../js/Home.js"></script>
+</body>
+</html>

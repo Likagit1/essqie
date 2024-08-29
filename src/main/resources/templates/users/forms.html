@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<link rel="stylesheet" href="../css/utilisateur/ajouter.css">
+
+<head th:insert="~{fragments/fragment :: head}">
+
+</head>
+<body>
+<div class="sidebar" th:insert="~{fragments/fragment::sidebar}"></div>
+
+<div class="main-content">
+    <main>
+        <div class="retour-container">
+            <a href="#" class="retour">← Retour</a>
+        </div>
+        <h2>Ajouter un utilisateur</h2>
+        <form id="addUserForm" th:object="${user}" th:action="@{/users}" method="post">
+            <input th:field="*{id}" type="text" hidden>
+
+            <div class="form-row">
+                <input th:field="*{pseudo}" type="text" id="pseudo" placeholder="Pseudo" required>
+            </div>
+            <div class="form-row">
+                <input th:field="*{password}" type="password" id="mot de passe" placeholder="Mot de passe">
+            </div>
+
+            <div class="form-row buttons">
+                <button type="button" class="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-save">Enregistrer</button>
+            </div>
+        </form>
+    </main>
+</div>
+
+<script src="../js/Home.js"></script>
+</body>
+</html>

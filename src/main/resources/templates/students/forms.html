@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.w3.org/1999/xhtml">
+<link rel="stylesheet" href="../css/professeur/ajouter.css">
+<head th:insert="~{fragments/fragment :: head}">
+
+</head>
+<body>
+<div class="sidebar" th:insert="~{fragments/fragment :: sidebar}"></div>
+
+<div class="main-content">
+    <main>
+        <div class="retour-container">
+            <a href="#" class="retour">← Retour</a>
+        </div>
+
+
+        <h2>Ajouter un élève</h2>
+        <form id="addStudentForm" th:object="${student}" th:action="@{/students}" method="post">
+            <div class="form-row">
+                <input th:field="*{id}"  hidden="hidden">
+                <input th:field="*{nom}" type="text" id="nom" placeholder="Nom" required>
+                <input th:field="*{prenom}" type="text" id="prenom" placeholder="Prénom" required>
+                <input th:field="*{email}" type="email" id="email" placeholder="E-mail" required>
+            </div>
+            <div class="form-row">
+                <div class="form-row">
+                    <select id="genre" required th:field="*{genre}">
+                        <option value="">Sélectionner un genre</option>
+                        <option value="F">F</option>
+                        <option value="H">H</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <input type="text" th:field="*{matricule}" id="matricule" placeholder="Matricule" required>
+
+            </div>
+            <div class="form-row">
+                <select id="classe" required th:field="*{classe}">
+                    <option value="">Sélectionner une classe</option>
+                    <option value="1ere">1ère</option>
+                    <option value="2eme">2ème</option>
+                    <option value="3eme">3ème</option>
+                    <option value="4eme">4ème</option>
+                    <option value="5eme">5ème</option>
+                    <option value="6eme">6ème</option>
+                </select>
+            </div>
+            <div class="form-row">
+                <input th:field="*{telephone}" type="text" id="telephone" placeholder="Téléphone">
+                <input th:field="*{ville}" type="text" id="ville" placeholder="Ville">
+            </div>
+            <div class="form-row buttons">
+                <button type="button" class="btn-cancel">Annuler</button>
+                <button type="submit" class="btn-save">Enregistrer</button>
+            </div>
+        </form>
+    </main>
+</div>
+
+<script src="../js/Home.js"></script>
+</body>
+</html>
